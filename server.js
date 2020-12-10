@@ -10,6 +10,17 @@ app.use(function (req, res, next) {
     next();
 });
 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/whiteboard', {useNewUrlParser: true});
+
+const quizSchema = mongoose.Schema({
+    name: String,
+    avg: Number
+}, {collection: "quizzes"});
+
+const quizModel = mongoose.model("QuizModel", quizSchema);
+
+
 
 const quizzesService = require("./controllers/quizzes.controller.server");
 quizzesService(app);
