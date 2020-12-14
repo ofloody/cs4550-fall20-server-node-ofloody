@@ -1,5 +1,5 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -13,12 +13,12 @@ app.use(function (req, res, next) {
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/whiteboard', {useNewUrlParser: true});
 
-const quizSchema = mongoose.Schema({
-    name: String,
-    avg: Number
-}, {collection: "quizzes"});
-
-const quizModel = mongoose.model("QuizModel", quizSchema);
+require('./controllers/quizzes.controller.server')(app);
+require('./controllers/question.controller.server')(app);
+require('./controllers/quiz-attempts.controller.server')(app);
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
 
@@ -30,19 +30,6 @@ questionsService(app);
 
 
 app.listen(3000);
-
-
-
-app.get('/hello', (req, res) =>
-    res.send('Hello World'));
-
-app.get('/add/:a/:b', (req, res) =>
-{
-    const a = parseInt(req.params['a']);
-    const b = parseInt(req.params['b']);
-    const c = a + b;
-    res.send()
-});
 
 
 console.log("How may I serve you?");

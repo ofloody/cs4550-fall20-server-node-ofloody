@@ -4,4 +4,4 @@ const questionsModel = mongoose.model(
     'QuestionsModel',
     questionsSchema
 )
-module.exports = questionsModel
+module.exports = questionsModel;
