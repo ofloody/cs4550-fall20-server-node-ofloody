@@ -1,7 +1,8 @@
 const quizAttemptsModel = require('../models/quiz-attempts/quiz-attempts.model.server')
 
 const scoreQuiz = (questions) => {
-    let numberOfCorrectQuestions = 0
+    console.log(questions);
+    let numberOfCorrectQuestions = 0;
     questions.forEach(question => question.answer === question.correct ?
         numberOfCorrectQuestions++ : numberOfCorrectQuestions)
     return 100 * numberOfCorrectQuestions / questions.length }

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const questionsSchema = mongoose.Schema({
     title: String,
+    quizId: mongoose.Schema.Types.ObjectId,
     question: String,
     correct: String,
     answer: String,
